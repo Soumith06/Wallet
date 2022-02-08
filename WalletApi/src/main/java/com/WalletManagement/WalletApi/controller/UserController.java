@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user){
-        try {
+        try{
             User newUser=userService.addUser(user);
             return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
         }
@@ -33,8 +33,8 @@ public class UserController {
         try{
             return new ResponseEntity<List<User>>(userService.getAllUsers(),HttpStatus.OK);
         }
-        catch (NotFoundException userNotFoundException){
-            return new ResponseEntity<String>(userNotFoundException.getMessage(),HttpStatus.CONFLICT);
+        catch (NotFoundException usersNotFoundException){
+            return new ResponseEntity<String>(usersNotFoundException.getMessage(),HttpStatus.CONFLICT);
         }
     }
 

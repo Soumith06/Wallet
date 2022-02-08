@@ -1,9 +1,7 @@
 package com.WalletManagement.WalletApi.controller;
 
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
-import com.WalletManagement.WalletApi.model.User;
 import com.WalletManagement.WalletApi.model.Wallet;
-import com.WalletManagement.WalletApi.repository.UserRepository;
 import com.WalletManagement.WalletApi.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +18,7 @@ public class WalletController {
     private WalletService walletService;
     
     @PostMapping
-    public ResponseEntity<?> createWallet(@RequestBody Wallet wallet){
+    public @ResponseBody ResponseEntity<?> createWallet(@RequestBody Wallet wallet){
         try{
             return new ResponseEntity<Wallet>(walletService.createWallet(wallet),HttpStatus.CREATED);
         }
@@ -35,8 +33,8 @@ public class WalletController {
         try{
             return new ResponseEntity<List<Wallet>>(walletService.getAllWallets(),HttpStatus.OK);
         }
-        catch (NotFoundException WalletsNotFoundException){
-            return new ResponseEntity<String>(WalletsNotFoundException.getMessage(),HttpStatus.CONFLICT);
+        catch (NotFoundException walletsNotFoundException){
+            return new ResponseEntity<String>(walletsNotFoundException.getMessage(),HttpStatus.CONFLICT);
         }
     }
 

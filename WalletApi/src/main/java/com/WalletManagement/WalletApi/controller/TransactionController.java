@@ -3,8 +3,6 @@ package com.WalletManagement.WalletApi.controller;
 
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.Transaction;
-import com.WalletManagement.WalletApi.model.User;
-import com.WalletManagement.WalletApi.model.Wallet;
 import com.WalletManagement.WalletApi.repository.UserRepository;
 import com.WalletManagement.WalletApi.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +35,10 @@ public class TransactionController {
     @GetMapping("/all")
     public ResponseEntity<?> getAllTransactions(){
         try{
-            return new ResponseEntity<List<Transaction>>(transactionService.getAllTransactions(),HttpStatus.ACCEPTED);
+            return new ResponseEntity<List<Transaction>>(transactionService.getAllTransactions(),HttpStatus.OK);
         }
-        catch (NotFoundException transactionNotFoundException){
-            return new ResponseEntity<String>(transactionNotFoundException.getMessage(),HttpStatus.CONFLICT);
+        catch (NotFoundException transactionsNotFoundException){
+            return new ResponseEntity<String>(transactionsNotFoundException.getMessage(),HttpStatus.CONFLICT);
         }
     }
 
