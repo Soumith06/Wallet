@@ -1,5 +1,6 @@
 package com.WalletManagement.WalletApi.service;
 
+import com.WalletManagement.WalletApi.Utils.enums.WalletStatus;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.User;
 
@@ -36,7 +37,7 @@ public class WalletService {
                 wallet.setBalance(0L);
             }
             Wallet newWallet=walletRepository.save(wallet);
-            user.setActive("true");
+            user.setActive(WalletStatus.True);
             userRepository.save(user);
             return newWallet;
         }
@@ -62,7 +63,7 @@ public class WalletService {
         }
         else{
             User user = userRepository.findByMobileNumber(mobileNumber);
-            user.setActive("false");
+            user.setActive(WalletStatus.False);
             userRepository.save(user);
             walletRepository.deleteById(mobileNumber);
         }

@@ -1,5 +1,6 @@
 package com.WalletManagement.WalletApi.ServiceTest;
 
+import com.WalletManagement.WalletApi.Utils.enums.WalletStatus;
 import com.WalletManagement.WalletApi.model.User;
 import com.WalletManagement.WalletApi.model.Wallet;
 import com.WalletManagement.WalletApi.repository.UserRepository;
@@ -31,7 +32,7 @@ public class WalletServiceTest {
 
     @Test
     public void createWalletTest(){
-        User user=new User(0L,"sou06","sou","00","g@gmail.com","false");
+        User user=new User(0L,"sou06","sou","00","g@gmail.com", WalletStatus.False);
         Wallet wallet=new Wallet("00",100L);
         Mockito.when(userRepository.findByMobileNumber("00")).thenReturn(user);
         Mockito.when(walletRepository.save(wallet)).thenReturn(wallet);
@@ -48,7 +49,7 @@ public class WalletServiceTest {
     @Test
     public void deleteWalletByIdTest(){
         Wallet wallet=new Wallet("00",100L);
-        User user=new User(0L,"sou06","sou","00","g@gmail.com","false");
+        User user=new User(0L,"sou06","sou","00","g@gmail.com",WalletStatus.False);
         Mockito.when(walletRepository.findById("00")).thenReturn(Optional.of(wallet));
         Mockito.when(userRepository.findByMobileNumber("00")).thenReturn(user);
         walletService.deleteWalletById("00");

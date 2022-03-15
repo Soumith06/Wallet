@@ -1,5 +1,6 @@
 package com.WalletManagement.WalletApi.ControllerTest;
 
+
 import com.WalletManagement.WalletApi.controller.WalletController;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.Wallet;
@@ -16,9 +17,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -36,8 +41,14 @@ public class WalletControllerTest {
     @MockBean
     private WalletService walletService;
 
+    String path = "src/test/JsonFiles/Wallet.json";
+    String requestBody= new String(Files.readAllBytes(Paths.get(path)));
+
     Wallet wallet1 = new Wallet("00", 0L);
     Wallet wallet2 = new Wallet("000", 0L);
+
+    public WalletControllerTest() throws IOException {
+    }
 
     @Test
     @DisplayName("Get All Wallets success")
@@ -126,7 +137,7 @@ public class WalletControllerTest {
                         .post("/wallet")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-                        .content(this.objectMapper.writeValueAsString(wallet1)))
+                        .content(requestBody))
                 .andDo(print())
                 .andExpect(status().isCreated());
     }

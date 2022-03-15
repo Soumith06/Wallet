@@ -1,5 +1,6 @@
 package com.WalletManagement.WalletApi.ControllerTest;
 
+import com.WalletManagement.WalletApi.Utils.enums.WalletStatus;
 import com.WalletManagement.WalletApi.controller.UserController;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.User;
@@ -17,6 +18,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,8 +42,15 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
-    User user1=new User(0L,"sou06","sou","00","d@gmail.com","false");
-    User user2=new User(1L,"soum06","soum","000","g@gmail.com","false");
+    String path = "src/test/JsonFiles/User.json";
+    String requestBody= new String(Files.readAllBytes(Paths.get(path)));
+
+
+    User user1=new User(0L,"sou06","sou","00","d@gmail.com", WalletStatus.False);
+    User user2=new User(1L,"soum06","soum","000","g@gmail.com",WalletStatus.False);
+
+    public UserControllerTest() throws IOException {
+    }
 
     @Test
     @DisplayName("Get All Users success")
@@ -136,10 +148,9 @@ public class UserControllerTest {
                         .post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-                        .content(this.objectMapper.writeValueAsString(user1))
+                        .content(requestBody)
                 )
                 .andExpect(status().isCreated());
 
-        System.out.println(this.objectMapper.writeValueAsString(user1));
     }
 }

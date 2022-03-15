@@ -1,5 +1,6 @@
 package com.WalletManagement.WalletApi.service;
 
+import com.WalletManagement.WalletApi.Utils.enums.TransactionStatus;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.Transaction;
 import com.WalletManagement.WalletApi.model.Wallet;
@@ -44,11 +45,11 @@ public class TransactionService {
                 payerWallet.setBalance(payerWallet.getBalance()-transaction.getTxnAmount());
                 walletRepository.save(payerWallet);
 
-                transaction.setStatus("Successful");
+                transaction.setStatus(TransactionStatus.Successful);
                 return transactionRepository.save(transaction);
             }
             else{
-                transaction.setStatus("Failed");
+                transaction.setStatus(TransactionStatus.Failed);
                 return transactionRepository.save(transaction);
             }
         }

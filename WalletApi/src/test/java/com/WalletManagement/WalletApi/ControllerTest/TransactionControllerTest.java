@@ -1,5 +1,7 @@
 package com.WalletManagement.WalletApi.ControllerTest;
 
+import com.WalletManagement.WalletApi.Utils.enums.TransactionStatus;
+import com.WalletManagement.WalletApi.Utils.enums.WalletStatus;
 import com.WalletManagement.WalletApi.controller.TransactionController;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.Transaction;
@@ -18,6 +20,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +45,16 @@ public class TransactionControllerTest {
     @MockBean
     private UserRepository userRepository;
 
-    Transaction transaction1=new Transaction(0L,"00","000",100L,"Successful");
-    Transaction transaction2=new Transaction(00L,"000","00",100L,"Successful");
+    String path = "src/test/JsonFiles/Transaction.json";
+    String requestBody= new String(Files.readAllBytes(Paths.get(path)));
 
-    User user1=new User(0L,"sou06","sou","00","d@gmail.com","true");
+    Transaction transaction1=new Transaction(0L,"00","000",100L, TransactionStatus.Successful);
+    Transaction transaction2=new Transaction(00L,"000","00",100L,TransactionStatus.Successful);
+
+    User user1=new User(0L,"sou06","sou","00","d@gmail.com", WalletStatus.True);
+
+    public TransactionControllerTest() throws IOException {
+    }
 
     @Test
     @DisplayName("Get All Transactions")
@@ -53,8 +64,7 @@ public class TransactionControllerTest {
         Mockito.when(transactionService.getAllTransactions()).thenReturn(transactionList);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/transaction/all")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .get("/transaction/all"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(2)))
@@ -134,8 +144,9 @@ public class TransactionControllerTest {
                         .post("/transaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(transaction1)))
+                        .content(requestBody))
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
+
 }

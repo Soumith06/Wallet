@@ -1,5 +1,7 @@
 package com.WalletManagement.WalletApi.service;
 
+import com.WalletManagement.WalletApi.Utils.Validations;
+import com.WalletManagement.WalletApi.Utils.enums.WalletStatus;
 import com.WalletManagement.WalletApi.exceptions.AlreadyExistsException;
 import com.WalletManagement.WalletApi.exceptions.NotFoundException;
 import com.WalletManagement.WalletApi.model.User;
@@ -15,17 +17,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean validateUser(User user){
-        List<User> usersList= userRepository.findAll();
-        for (User exisitingUser:usersList){
-            if(exisitingUser.getMobileNumber().equals(user.getMobileNumber()) || exisitingUser.getUserName().equals(user.getUserName()) || exisitingUser.getEmailId().equals(user.getEmailId()))
-                return false;
-            }
-        return true;
-    }
+    @Autowired
+    private Validations validations;
+
     public User addUser(User user) {
-        if(validateUser(user)){
-            user.setActive("false");
+        if(validations.validateUser(user)){
+            user.setActive(WalletStatus.False);
             return userRepository.save(user);
         }
         else{
