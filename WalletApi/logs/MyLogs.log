@@ -1,0 +1,25 @@
+[INFO ] 2022-03-20 18:06:57.428 [http-nio-8080-exec-2] JwtController - Authenticating user
+[INFO ] 2022-03-20 18:06:58.311 [http-nio-8080-exec-2] JwtController - jwtToken :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE2NDc4MTU4MTcsImlhdCI6MTY0Nzc3OTgxN30.EVKtFjlD6RDywjU5N6XJ06J2wpAO-hhNDFG2-6rAmgk
+[INFO ] 2022-03-20 18:07:38.530 [http-nio-8080-exec-3] UserController - Getting all users
+[INFO ] 2022-03-20 18:07:59.033 [http-nio-8080-exec-5] UserController - Getting all users
+[INFO ] 2022-03-20 18:10:12.565 [http-nio-8080-exec-2] UserController - Getting all users
+[INFO ] 2022-03-20 18:15:21.541 [http-nio-8080-exec-10] UserController - Creating User for User Detailscom.WalletManagement.WalletApi.model.User@4d53ea96
+[INFO ] 2022-03-20 18:17:26.617 [http-nio-8080-exec-3] UserController - Getting all users
+[INFO ] 2022-03-20 18:22:05.426 [http-nio-8080-exec-2] UserController - Getting all users
+[INFO ] 2022-03-20 18:26:23.809 [http-nio-8080-exec-2] UserController - Getting all users
+[INFO ] 2022-03-20 19:24:40.602 [http-nio-8080-exec-2] UserController - Getting all users
+[ERROR] 2022-03-20 19:24:41.099 [http-nio-8080-exec-2] UserController - Users List Empty
+[INFO ] 2022-03-20 19:25:10.922 [http-nio-8080-exec-4] JwtController - Authenticating user
+[INFO ] 2022-03-20 19:25:10.999 [http-nio-8080-exec-4] JwtController - jwtToken :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE2NDc4MjA1MTAsImlhdCI6MTY0Nzc4NDUxMH0.v_B5mX6XStNyQ45C_seds6j85nIBBkHaW7UjmOJ5eH8
+[INFO ] 2022-03-20 19:25:30.660 [http-nio-8080-exec-5] UserController - Getting all users
+[ERROR] 2022-03-20 19:25:30.665 [http-nio-8080-exec-5] UserController - Users List Empty
+[INFO ] 2022-03-20 19:26:19.287 [http-nio-8080-exec-7] WalletController - Getting all wallets
+[ERROR] 2022-03-20 19:26:19.315 [http-nio-8080-exec-7] WalletController - Wallets List Empty
+[INFO ] 2022-03-20 19:27:26.906 [http-nio-8080-exec-10] UserController - Getting all users
+[ERROR] 2022-03-20 19:27:26.915 [http-nio-8080-exec-10] UserController - Users List Empty
+[INFO ] 2022-03-20 19:28:36.308 [http-nio-8080-exec-1] UserController - Getting all users
+[ERROR] 2022-03-20 19:28:36.603 [http-nio-8080-exec-1] UserController - Users List Empty
+[INFO ] 2022-03-20 19:48:28.028 [http-nio-8080-exec-7] UserController - Getting all users
+[ERROR] 2022-03-20 19:48:28.036 [http-nio-8080-exec-7] UserController - Users List Empty
+[INFO ] 2022-03-20 19:49:07.459 [http-nio-8080-exec-1] UserController - Getting all users
+[ERROR] 2022-03-20 19:49:07.783 [http-nio-8080-exec-1] UserController - Users List Empty
